@@ -1,0 +1,944 @@
+﻿<UserControl x:Class="Car_Renter.Pages.RentContracts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Car_Renter.Pages"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             FlowDirection="RightToLeft"
+             xmlns:table="clr-namespace:Car_Renter.Tables"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <UserControl.DataContext>
+        <table:RentContracts />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid Background="White">
+            <Grid  Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition />
+                    <RowDefinition Height="0" />
+                </Grid.RowDefinitions>
+
+
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button MinWidth="120"
+                            HorizontalAlignment="Left"
+                            Content="اضافة عقد ايجار"
+                            Grid.Row="0"
+                            Style="{StaticResource StandardButtonSound}"
+                            Name="AddNew"
+                            Click="AddNew_Click" />
+
+                    <TextBox Name="txtSearch"
+                             Grid.Column="2"
+                             Uid="ابحث هنا"
+                             Style="{StaticResource EntryNewWithHint}"
+                             TextChanged="txtSearch_TextChanged" />
+
+                    <Button HorizontalAlignment="Left"
+                            Content="ابحث"
+                            Grid.Column="4"
+                            Style="{StaticResource StandardButtonSound}"
+                            Name="btnSearch"
+                            Click="btnSearch_Click" />
+
+
+
+                </Grid>
+
+
+
+
+
+                <Border Margin="0"
+                        CornerRadius="3"
+                        Padding="5"
+                        Grid.Row="2"
+                        Style="{StaticResource ShadowBorder}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+
+
+                        <DataGrid  MouseDoubleClick="DataGridList_MouseDoubleClick"
+                                  Name="DataGridList"
+                                  Style="{StaticResource DataGridStyle }"
+                                  Grid.Row="2">
+
+                            <DataGrid.Columns>
+
+
+
+                                <DataGridTextColumn Binding="{Binding Id}"
+                                                    Header="الرقم" />
+
+                                <DataGridTemplateColumn Header="اسم السيارة">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Run Text="{Binding CarName}" />
+                                                <Run Text="|" />
+                                                <Run Text="{Binding CarModel}" />
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTextColumn  Binding="{Binding ClientName}"
+                                                    Header="المستاجر"  />
+
+                                <DataGridTextColumn Binding="{Binding DateOut,StringFormat=yyyy/MM/dd}"
+                                                    Header="من تاريخ" />
+
+                                <DataGridTextColumn Binding="{Binding DateIn,StringFormat=yyyy/MM/dd}"
+                                                    Header="الى تاريخ" />
+
+                                <DataGridTextColumn Binding="{Binding DayNumber}"
+                                                    Header="عدد الايام" />
+
+                                <DataGridTextColumn Binding="{Binding DailyCost}"
+                                                    Header="الاجرة اليومية" />
+
+                                <DataGridTextColumn Binding="{Binding TotalAmount}"
+                                                    Header="المبلغ الاجمالي" />
+
+                                <DataGridTextColumn Binding="{Binding TotalCash}"
+                                                    Header="المبلغ المدفوع" />
+
+                               
+                                <DataGridTemplateColumn Header="المبلغ المتبقي">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="{Binding NetAmount}"/>
+
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+
+                                <DataGridTextColumn Binding="{Binding CarReturn}"
+                                                    Header="حالة السيارة" />
+
+
+                                <DataGridTemplateColumn >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnPrint_Click" Name="btnPrint" CommandParameter="{Binding .}"
+                                                   
+                                                    HorizontalAlignment="Center"
+                                                   
+                                                    Style="{StaticResource StandardButtonSound}"
+                                                    Content="طباعة" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+
+                                <!--<DataGridTextColumn Header="{Binding Usernamelbl,Source={StaticResource MVVM}}"      />-->
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Border>
+
+
+
+
+
+            </Grid>
+
+
+
+
+
+
+
+        </Grid>
+
+
+        <!--<Grid Visibility="{Binding ElementName=AddNewPop,Path=IsOpen,Converter={StaticResource BoolToVis}}">
+            <Grid.Background>
+                <SolidColorBrush Opacity=".7"
+                                 Color="WhiteSmoke" />
+            </Grid.Background>
+        </Grid>-->
+
+        <Popup Name="AddNewPop"
+               PopupAnimation="Slide"
+               AllowsTransparency="True"
+               Placement="Center"
+               MinWidth="800"
+               Margin="20"
+               StaysOpen="True">
+            <Border Name="BorderNewpop" Style="{StaticResource ShadowBorder}"
+                     CornerRadius="0">
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource ColumnsFirstWidth}" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="{StaticResource UnitColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource ColumnsFirstWidth}" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="{StaticResource MainLabelHeight}" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition MinHeight="30" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition MinHeight="30" />
+                        <RowDefinition Height="10" />
+
+                    </Grid.RowDefinitions>
+
+                    <Border Background="LightGray"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                            Height="2" />
+
+                    <TextBlock Name="lblHeader"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               Text="بيانات السيارة"
+                               Style="{StaticResource TitleHomePage }" />
+
+
+
+                    <ToggleButton Name="CloseAdd"
+                                  Click="CloseAdd_Click"
+                                  VerticalAlignment="Center"
+                                  Grid.Column="3"
+                                  Grid.Row="1"
+                                  Content="X"
+                                  Height="30"
+                                  Width="30"
+                                  HorizontalAlignment="Right"
+                                  Style="{StaticResource StandardButtonToggle}"
+                                  Margin="0,0,5,0"
+                                  IsTabStop="False" />
+
+
+
+
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="3"
+                                Grid.Row="3">
+                        <Button Click="btnAdd_Click"
+                                Name="btnAdd"
+                                Content="حفظ"
+                                Style="{StaticResource StandardButtonSound}" />
+                    </StackPanel>
+
+
+                    <StackPanel HorizontalAlignment="Left"
+                                Orientation="Horizontal"
+                                Grid.Column="1"
+                                Grid.ColumnSpan="3"
+                                Grid.Row="3">
+                        <Button Name="btnReturnCar"
+                                Click="btnReturnCar_Click"
+                                Content="ارجاع المركبة"
+                                Style="{StaticResource StandardButtonSound}" />
+
+
+                        <TextBlock Margin="10,0"
+                                   Text="حالة المركبة"
+                                   Style="{StaticResource textblockEdit}" />
+
+                        <TextBox IsEnabled="False"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="حالة المركبة"
+                                 Text="{Binding CarReturn}" />
+
+
+                    </StackPanel>
+
+
+
+                    <Grid PreviewKeyDown="GridForm_PreviewKeyDown"
+                          Name="GridForm"
+                          Grid.Row="5"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition MinWidth="200"/>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition MinWidth="200" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition MinWidth="200" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="10" />
+                            <RowDefinition />
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition Height="10" />
+                            <RowDefinition />
+                            <RowDefinition Height="10" />
+                            <RowDefinition />
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                            <RowDefinition Height="10" />
+
+                        </Grid.RowDefinitions>
+
+                        <TextBlock  Grid.Column="0"
+                                    Grid.Row="0"
+                                    Text="اسم المستاجر"
+                                    Style="{StaticResource textblockEdit}" />
+
+                        <TextBlock  Grid.Column="4"
+                                    Grid.Row="0"
+                                    Text="سائق بديل"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+
+
+
+
+                        <TextBlock  Grid.Column="8"
+                                    Grid.Row="0"
+                                    Text="السيارة"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+
+                        <TextBlock  Grid.Column="8"
+                                    Grid.Row="4"
+                                    Text="عدد الايام"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+                        <TextBlock  Grid.Column="8"
+                                    Grid.Row="6"
+                                    Text="الكلفة اليومية"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+                        <TextBlock  Grid.Column="0"
+                                    Grid.ColumnSpan="11"
+                                    Grid.Row="2"
+                                    Text="بيانات التوقيت"
+                                    FontSize="20"
+                                    Style="{StaticResource textblockEdit}"
+                                    HorizontalAlignment="Center" />
+
+
+
+
+                        <Border Background="LightGray"
+                                VerticalAlignment="Top"
+                                Margin="0,5,0,0"
+                                Grid.Row="3"
+                                Grid.ColumnSpan="11"
+                                Height="2" />
+
+
+
+                        <TextBlock  Grid.Column="0"
+                                    Grid.Row="4"
+                                    Text="تاريخ الخروج"
+                                    Style="{StaticResource textblockEdit}" />
+
+                        <TextBlock  Grid.Column="4"
+                                    Grid.Row="4"
+                                    Text="وقت الخروج"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+                        <TextBlock  Grid.Column="0"
+                                    Grid.Row="6"
+                                    Text="تاريخ الارجاع"
+                                    Style="{StaticResource textblockEdit}" />
+
+                        <TextBlock  Grid.Column="4"
+                                    Grid.Row="6"
+                                    Text="وقت الارجاع"
+                                    Style="{StaticResource textblockEdit}" />
+
+
+
+
+
+                        <ToggleButton  Grid.Column="0"
+                                       Grid.ColumnSpan="11"
+                                       Grid.Row="8"
+                                       Content="البيانات المالية"
+                                       FontSize="20"
+                                       Width="150"
+                                       Name="btnCash" Visibility="Hidden"
+                                       HorizontalAlignment="Center"
+                                       Style="{StaticResource StandardButtonToggle}" />
+
+                        <Border Background="LightGray"
+                                VerticalAlignment="Top"
+                                Margin="0,5,0,0"
+                                Grid.Row="9"
+                                Grid.ColumnSpan="11"
+                                Height="2" />
+
+
+
+
+
+
+
+
+
+                        <TextBox Grid.Column="2"
+                                 Grid.Row="0"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="اسم المستاجر"
+                                 Name="txtClient"
+                                 Text="{Binding ClientName}"
+                                 TextChanged="txtClient_TextChanged" />
+
+
+                        <TextBox Grid.Column="6"
+                                 Grid.Row="0"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="السائق البديل"
+                                 Text="{Binding ClientName}"
+                                 Name="txtSecoundClient"
+                                 TextChanged="txtSecoundClient_TextChanged" />
+
+                        <TextBox Grid.Column="10"
+                                 Grid.Row="0"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="السيارة"
+                                 Text="{Binding CarName}"
+                                 Name="txtCar"
+                                 TextChanged="txtCar_TextChanged" />
+
+
+
+
+
+
+                        <DatePicker Grid.Column="2"
+                                    Grid.Row="4"
+                                    SelectedDate="{Binding DateOut,Mode=TwoWay}"
+                                    Name="txtDateOut" />
+
+
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="6"
+                                    Grid.Row="4">
+                            <materialDesign:TimePicker HorizontalAlignment="Left"
+                                                       Width="18"
+                                                       SelectedTime="{Binding DateOut,Mode=TwoWay}"
+                                                       Name="txtTimeOut" />
+
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="10,0"
+                                       Text="{Binding ElementName=txtTimeOut,Path=SelectedTime,StringFormat=hh:mm tt}" />
+                        </StackPanel>
+
+                        <TextBox Grid.Column="10"
+                                 Grid.Row="4"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="عدد الايام"
+                                 Text="{Binding DayNumber}"
+                                 Name="txtDayNumber" />
+
+                        <TextBox Grid.Column="10"
+                                 Grid.Row="6"
+                                 Style="{StaticResource EntryNewWithHint}"
+                                 Uid="الكلفة اليومية"
+                                 Text="{Binding DailyCost}"
+                                 Name="txtDailyCost" />
+
+
+                        <DatePicker Grid.Column="2"
+                                    Grid.Row="6"
+                                    SelectedDate="{Binding DateIn,Mode=TwoWay}"
+                                    Name="txtDateIn" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="6"
+                                    Grid.Row="6">
+                            <materialDesign:TimePicker HorizontalAlignment="Left"
+                                                       Width="18"
+                                                       SelectedTime="{Binding DateIn,Mode=TwoWay}"
+                                                       Name="txtTimeIn" />
+
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="10,0"
+                                       Text="{Binding ElementName=txtTimeIn,Path=SelectedTime,StringFormat=hh:mm tt}" />
+                        </StackPanel>
+
+
+
+
+
+                        <Grid 
+                              Grid.ColumnSpan="11"
+                              Height="30"
+                              Grid.Row="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition />
+
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition />
+
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock  Grid.Column="1"
+                                            Text="المبلغ المطلوب"
+                                            Style="{StaticResource textblockEdit}" />
+
+
+                                <TextBox Grid.Column="3" IsEnabled="False"
+                                         Text="{Binding TotalAmount,Mode=OneWay}"
+                                         Style="{StaticResource EntryNewWithHint}"
+                                         Uid="المبلغ المطلوب" />
+
+                                <TextBlock  Grid.Column="5"
+                                            Text="المبلغ المدفوع"
+                                            Style="{StaticResource textblockEdit}" />
+
+
+                                <TextBox Grid.Column="7"
+                                         Name="txtCash"
+                                         Style="{StaticResource EntryNewWithHint}"
+                                         Uid="المبلغ المدفوع"
+                                         Text="{Binding TotalCash,Mode=TwoWay}" />
+
+
+                                <TextBlock  Grid.Column="9"
+                                            Text="صافي المبلغ"
+                                            Style="{StaticResource textblockEdit}" />
+
+
+                                <TextBox Grid.Column="11"
+                                         IsReadOnly="True"
+                                         Style="{StaticResource EntryNewWithHint}"
+                                         Uid="صافي المبلغ"
+                                         Text="{Binding NetAmount,Mode=OneWay}" />
+
+                            </Grid>
+                        </Grid>
+
+
+
+
+                    </Grid>
+
+
+                    <Grid Background="{StaticResource GraySystem}"
+                          Height="1"
+                          Grid.Row="6"
+                          VerticalAlignment="Center"
+                          Grid.ColumnSpan="5" />
+
+
+
+
+
+                    <TextBlock Name="txtMessage"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               Grid.Row="7"
+                               Text=""
+                               Style="{StaticResource textblockEdit}" />
+
+
+
+
+                </Grid>
+
+
+
+
+
+            </Border>
+
+        </Popup>
+
+
+
+
+        <!--<Grid Visibility="{Binding ElementName=popCash,Path=IsOpen,Converter={StaticResource BoolToVis}}">
+            <Grid.Background>
+                <SolidColorBrush Opacity=".7"
+                                 Color="WhiteSmoke" />
+            </Grid.Background>
+        </Grid>-->
+
+        <Popup  PopupAnimation="Slide"
+                AllowsTransparency="True"
+                Placement="Center"
+                StaysOpen="False"
+                Name="popCash"
+                IsOpen="{Binding ElementName=btnCash,Path=IsChecked}">
+
+
+            <Border Width="{Binding ElementName=BorderNewpop,Path=ActualWidth}"
+                Height="{Binding ElementName=BorderNewpop,Path=ActualHeight}"
+                Style="{StaticResource ShadowBorder}"
+                    CornerRadius="0">
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource ColumnsFirstWidth}" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="{StaticResource UnitColumnWidth}" />
+                        <ColumnDefinition Width="{StaticResource ColumnsFirstWidth}" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="{StaticResource MainLabelHeight}" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition  MinHeight="100"/>
+                        <RowDefinition Height="20" />
+                     
+
+                    </Grid.RowDefinitions>
+
+                    <Border Background="LightGray"
+                            VerticalAlignment="Bottom"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                            Height="2" />
+
+                    <TextBlock 
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Grid.ColumnSpan="3"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               Text="الدفعات المالية"
+                               Style="{StaticResource TitleHomePage }" />
+
+
+
+                    <ToggleButton
+                                  Click="CloseAdd_Click"
+                                  VerticalAlignment="Center"
+                                  Grid.Column="3"
+                                  Grid.Row="1"
+                                  Content="X"
+                                  Height="30"
+                                  Width="30"
+                                  HorizontalAlignment="Right"
+                                  Style="{StaticResource StandardButtonToggle}"
+                                  Margin="0,0,5,0"
+                                  IsTabStop="False" />
+
+
+
+
+
+
+
+
+
+
+
+
+                    <Grid Grid.Column="1" Grid.ColumnSpan="3"
+                          Grid.Row="3"
+                          >
+                        <Grid PreviewKeyDown="GridForm_PreviewKeyDown">
+
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{StaticResource RowFirstHeight}" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="{StaticResource SpaceShapeRow}" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="{StaticResource SpaceShapeRow}" />
+                                <RowDefinition />
+                                <RowDefinition Height="{StaticResource SpaceShapeRow}" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="{StaticResource RowFirstHeight}" />
+                            </Grid.RowDefinitions>
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition  Width="auto" />
+                                <ColumnDefinition Width="10" />
+
+                            </Grid.ColumnDefinitions>
+
+
+
+
+
+                            <TextBlock Text="القيمة"
+                                       Grid.Row="1"
+                                       Grid.Column="1"
+                                       Style="{StaticResource textblockEdit}" />
+                            <TextBlock Text="تاريخ الدفعه"
+                                       Grid.Row="1"
+                                       Grid.Column="3"
+                                       Style="{StaticResource textblockEdit}" />
+
+                            <TextBlock Text="ملاحظات"
+                                       Grid.Row="1"
+                                       Grid.Column="5"
+                                       Style="{StaticResource textblockEdit}" />
+
+
+
+
+                            <TextBox Name="txtAmount"
+                                     Uid="القيمة"
+                                     Grid.Row="3"
+                                     Grid.Column="1"
+                                     Style="{StaticResource EntryNewWithHint}" />
+                            <DatePicker Width="120"
+                                        Foreground="Black"
+                                        Name="txtAmountDate"
+                                        SelectedDate="{x:Static sys:DateTime.Now}"
+                                        Grid.Row="3"
+                                        Grid.Column="3" />
+
+
+                            <TextBox Name="txtAmountNote"
+                                     Uid="ملاحظات"
+                                     Grid.Row="3"
+                                     Grid.Column="5"
+                                     Style="{StaticResource EntryNewWithHint}" />
+
+
+
+                            <Button Name="AddAMount"
+                                    Content="اضافة"
+                                    Grid.Row="3"
+                                    Grid.Column="7"
+                                    Style="{StaticResource StandardButtonSound}"
+                                    Click="AddAMount_Click" />
+
+
+
+
+
+
+
+
+
+                            <DataGrid Name="PaymentList"
+                                      Style="{StaticResource DataGridStyle}"
+                                      Grid.Row="5"
+                                      Grid.ColumnSpan="8">
+
+                                <DataGrid.Columns>
+
+                                    <DataGridTextColumn Binding="{Binding Id}"
+                                                        Header="تسلسل" />
+
+                                    <DataGridTextColumn Binding="{Binding Amount}"
+                                                        Header="القيمة" />
+
+                                    <DataGridTextColumn Binding="{Binding AmountDate,StringFormat=yyyy/MM/dd}"
+                                                        Header="التاريخ" />
+
+                                    <DataGridTextColumn Binding="{Binding AmountNote}"
+                                                        Header="ملاحظات" />
+
+
+
+
+                                   
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Border Grid.Column="1"
+                                    Grid.Row="7"
+                                    Grid.ColumnSpan="7"
+                                    CornerRadius="5"
+                                    Background="#ECF2FF">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="المجموع"
+                                               Grid.Column="0"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Foreground="Black" />
+
+                                    <TextBlock Text="{Binding CountEmployee}"
+                                               Grid.Column="1"
+                                               HorizontalAlignment="Center"
+                                               Foreground="Black" />
+
+                                    <TextBlock Text="{Binding TotalSalary}"
+                                               Grid.Column="2"
+                                               HorizontalAlignment="Center"
+                                               Foreground="Black" />
+
+
+
+                                </Grid>
+                            </Border>
+
+                        </Grid>
+
+                    </Grid>
+
+
+
+
+
+
+
+
+
+                </Grid>
+
+
+
+
+
+            </Border>
+
+
+          
+
+        </Popup>
+
+
+
+
+        <Popup PopupAnimation="Slide"
+               AllowsTransparency="True"
+               Placement="Bottom"
+               StaysOpen="False"
+               PlacementTarget="{Binding ElementName=txtClient}"
+               Name="popSelectClient">
+            <Border  Style="{StaticResource ShadowBorder}"
+                     CornerRadius="0"
+                     MaxHeight="250"
+                     Width="{Binding ElementName=txtClient,Path=ActualWidth}">
+
+                <ListBox PreviewMouseLeftButtonUp="ListClientMain_PreviewMouseLeftButtonUp"
+                         DisplayMemberPath="ClientName"
+                         SelectedValuePath="Id"
+                         Name="ListClientMain" />
+
+            </Border>
+        </Popup>
+
+
+        <Popup PopupAnimation="Slide"
+               AllowsTransparency="True"
+               Placement="Bottom"
+               StaysOpen="False"
+               PlacementTarget="{Binding ElementName=txtSecoundClient}"
+               Name="popSelectClientSecound">
+            <Border  Style="{StaticResource ShadowBorder}"
+                     CornerRadius="0"
+                     MaxHeight="250"
+                     Width="{Binding ElementName=txtSecoundClient,Path=ActualWidth}">
+
+                <ListBox PreviewMouseLeftButtonUp="ListClientSecoundMain_PreviewMouseLeftButtonUp"
+                         DisplayMemberPath="ClientName"
+                         SelectedValuePath="Id"
+                         Name="ListClientSecoundMain" />
+
+            </Border>
+        </Popup>
+
+        <Popup PopupAnimation="Slide"
+               AllowsTransparency="True"
+               Placement="Bottom"
+               StaysOpen="False"
+               PlacementTarget="{Binding ElementName=txtCar}"
+               Name="popSelectCar">
+            <Border  Style="{StaticResource ShadowBorder}"
+                     CornerRadius="0"
+                     MaxHeight="250"
+                     Width="{Binding ElementName=txtCar,Path=ActualWidth}">
+
+                <ListBox PreviewMouseLeftButtonUp="ListCar_PreviewMouseLeftButtonUp"
+                         Name="ListCar">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                
+                                <Run Text="{Binding CarName}" />
+                                <Run Text="|" />
+                                <Run Text="{Binding CarModel}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </Border>
+        </Popup>
+
+    </Grid>
+</UserControl>

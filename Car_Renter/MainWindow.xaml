@@ -1,0 +1,331 @@
+﻿<Window x:Class="Car_Renter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Car_Renter"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border BorderThickness="1"
+            BorderBrush="Black"
+            Padding="2">
+
+        <Grid Name="GridPage">
+            <Grid>
+
+
+                <Grid Background="WhiteSmoke"
+                      FlowDirection="RightToLeft">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="7" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid FlowDirection="LeftToRight"
+                          Grid.Row="0"
+                          Background="{StaticResource MainColor}"
+                          MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    Margin="20 0">
+                            <Button Click="btnTopButtons"
+                                    Uid="2"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon  Kind="WindowMinimize"
+                                                          Foreground="White"
+                                                          Width="25"
+                                                          Height="25" />
+                            </Button>
+                            <Button Visibility="Visible"
+                                    Click="btnTopButtons"
+                                    Uid="0"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Name="PackIconWindowsState"
+                                                         Kind="WindowMaximize"
+                                                         Foreground="White"
+                                                         Width="25"
+                                                         Height="25" />
+                            </Button>
+                            <Button Click="btnTopButtons"
+                                    Uid="1"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon Kind="Power"
+                                                         Foreground="White"
+                                                         Width="25"
+                                                         Height="25" />
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 0 0 0">
+                            <Button Click="btnTopButtons"
+                                    Visibility="Collapsed"
+                                    Uid="3"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon  Kind="Update"
+                                                          Foreground="White"
+                                                          Width="25"
+                                                          Height="25" />
+                            </Button>
+
+                            <Border Visibility="Collapsed"
+                                    BorderThickness="1"
+                                    BorderBrush="White"
+                                    Margin="0,3"
+                                    CornerRadius="10"
+                                    Padding="10,0">
+                                <TextBlock   VerticalAlignment="Center"
+                                             Foreground="White"
+                                             FontSize="20"
+                                             Name="lblTime" />
+                            </Border>
+
+
+                            <materialDesign:Card Visibility="Collapsed"
+                                                 Margin="10,3"
+                                                 BorderThickness="1"
+                                                 BorderBrush="White"
+                                                 Padding="10,0">
+                                <TextBox  FlowDirection="RightToLeft"
+                                          Background="White"
+                                          Width="300"
+                                          MaxWidth="300"
+                                          VerticalContentAlignment="Center"
+                                          Foreground="Black"
+                                          FontSize="15"
+                                          Name="txtClip" />
+                            </materialDesign:Card>
+
+                            <Button Visibility="Collapsed"
+                                    Click="btnTopButtons"
+                                    Uid="5"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon  Kind="Printer"
+                                                          Foreground="White"
+                                                          Width="25"
+                                                          Height="25" />
+                            </Button>
+
+
+                            <materialDesign:Card  FlowDirection="RightToLeft"
+                                                  Margin="10,3"
+                                                  BorderThickness="1"
+                                                  BorderBrush="White"
+                                                  Padding="10,0">
+                                <ComboBox  Background="White"
+                                           MinWidth="100"
+                                           VerticalContentAlignment="Center"
+                                           Foreground="Black"
+                                           FontSize="15"
+                                           Name="txtPrinter" />
+                            </materialDesign:Card>
+
+                            <Button Click="btnTopButtons"
+                                    Uid="6"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon  Kind="PrinterCheck"
+                                                          Foreground="White"
+                                                          Width="25"
+                                                          Height="25" />
+                            </Button>
+
+                            <Button Margin="20,0"
+                                    Click="btnTopButtons"
+                                    Uid="4"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Center">
+                                <materialDesign:PackIcon  Kind="FolderMydrive"
+                                                          Foreground="White"
+                                                          Width="25"
+                                                          Height="25" />
+                            </Button>
+
+                            <Grid Margin="0,10"
+                                  Width="100"
+                                  Name="GridProgress">
+
+                            </Grid>
+
+
+                        </StackPanel>
+                    </Grid>
+                    <Grid  Grid.Row="1"
+                           Name="GridNameButtons"
+                           Margin="5 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0"
+                                Uid="0"
+                                Height="40"
+                                Content="الرئيسية"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons" />
+                        <Button Grid.Column="1"
+                                Uid="1"
+                                Height="40"
+                                Content="تاجير"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons"
+                                Name="btnRentTrans" />
+                       
+                              
+                        <Button Grid.Column="2"
+                                Uid="3"
+                                Height="40"
+                                Content="التقارير"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons" />
+                        <materialDesign:PopupBox Name="SecondaryMenu"
+                                                 IsEnabled="True"
+                                                 Foreground="Black"
+                                                 Visibility="Visible"
+                                                 Grid.Column="4"  />
+                        <Button Visibility="Collapsed"
+                                Grid.Column="5"
+                                Uid="5"
+                                Height="40"
+                                Content=""
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons" />
+                        <Button Visibility="Collapsed"
+                                Grid.Column="6"
+                                Uid="6"
+                                Height="40"
+                                Content=""
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons" />
+                        <Button Visibility="Collapsed"
+                                Grid.Column="7"
+                                Uid="7"
+                                Height="40"
+                                Content=""
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{StaticResource MainTextColor}"
+                                Click="btnMainButtons" />
+
+
+
+
+
+                    </Grid>
+                    <Grid  Grid.Row="2"
+                           x:Name="GridCursor"
+                           
+                           Height="5"
+                           Background="#FF2196F3"
+                           HorizontalAlignment="Left"
+                           Margin="0 0 0 0" />
+
+                    <Grid x:Name="GridMain"
+                          Grid.Row="3"
+                          Background="{StaticResource MainColor}">
+
+                    </Grid>
+                </Grid>
+
+
+            </Grid>
+
+
+
+            <Popup Name="PopRentTrans" StaysOpen="False" PlacementTarget="{Binding ElementName=btnRentTrans}" Placement="Bottom" IsOpen="False" AllowsTransparency="True">
+
+                <Grid>
+                    <materialDesign:Card Width="{Binding ElementName=btnRentTrans,Path=ActualWidth}"
+                                        >
+
+                        <StackPanel>
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="المستأجرين"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}" Click="Button_Click" 
+                                    Uid="0"
+                                    />
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="السيارات"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}"
+                                    Click="Button_Click"
+                                    Uid="1" />
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="عقود الايجار"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}"
+                                    Click="Button_Click"
+                                    Uid="2" />
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="السيارات المؤجرة"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}"
+                                    Click="Button_Click"
+                                    Uid="3" />
+                        </StackPanel>
+
+                    </materialDesign:Card>
+                </Grid>
+                
+            </Popup>
+
+
+        </Grid>
+
+    </Border>
+
+</Window>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="Car_Renter.ReportManage.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Car_Renter.ReportManage"
+        mc:Ignorable="d"
+        Title="ReportWindow" Height="450" Width="800"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        WindowState="Maximized"
+        >
+    <Grid>
+        <WindowsFormsHost>
+            <rv:ReportViewer  ShowPrintButton="True"
+                              x:Name="ReportViewr1" />
+
+        </WindowsFormsHost>
+    </Grid>
+</Window>
