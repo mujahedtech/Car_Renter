@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="Car_Renter.ReportManage.ClientReports"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Car_Renter.ReportManage"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             FlowDirection="RightToLeft"
+             >
+    <Grid Background="White">
+
+        <materialDesign:Card Padding="10"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition MinWidth="200"/>
+                    <ColumnDefinition Width="10" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+
+                <TextBlock  Grid.Column="1"
+                            Grid.Row="1"
+                            Text="اسم المستاجر"
+                            Style="{StaticResource textblockEdit}" />
+
+              
+
+                <Grid Grid.Column="3"
+                      Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Style="{StaticResource EntryNewWithHint}"
+                             Uid="اسم المستاجر"
+                             Name="txtClient"
+                             Text="{Binding ClientName}"
+                             TextChanged="txtClient_TextChanged" />
+
+                    <Button Uid="0" Name="BtnViewAll" Click="BtnViewAll_Click"
+                           
+                            Grid.Column="2"
+                            Background="{x:Null}"
+                            BorderBrush="{x:Null}"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right">
+                        <materialDesign:PackIcon FlowDirection="RightToLeft"
+                                                 Kind="Search"
+                                                 Foreground="DodgerBlue"
+                                                 Width="25"
+                                                 Height="25" />
+                    </Button>
+
+                </Grid>
+
+
+                <CheckBox IsChecked="{Binding DateSearch}"
+                          Content="بحث من خلال تاريخ"
+                          Grid.Row="3"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="3" />
+
+
+
+                <TextBlock  Grid.Column="1"
+                            Grid.Row="5"
+                            Text="من تاريخ"
+                            Style="{StaticResource textblockEdit}" />
+
+                <TextBlock  Grid.Column="1"
+                            Grid.Row="7"
+                            Text="الى تاريخ"
+                            Style="{StaticResource textblockEdit}" />
+
+
+                <DatePicker HorizontalAlignment="Left" IsEnabled="{Binding DateSearch}"
+                            Grid.Column="3"
+                            Grid.Row="5"
+                            SelectedDate="{Binding DateFrom,Mode=TwoWay}" />
+
+                <DatePicker HorizontalAlignment="Left" IsEnabled="{Binding DateSearch}"
+                            Grid.Column="3"
+                            Grid.Row="7"
+                            SelectedDate="{Binding DateTo,Mode=TwoWay}" />
+
+
+
+
+                <StackPanel HorizontalAlignment="Center"  Grid.Row="9"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="4"
+                              Orientation="Horizontal">
+                    <Button Name="btnTransaction" Click="btnTransaction_Click"
+                            HorizontalAlignment="Center"
+                            Content="حركات"
+                            Style="{StaticResource StandardButtonSound}"
+                          
+                           />
+
+                    <Button Visibility="Collapsed" Margin="10,0"
+                           Name="btnBalanceSheet" Click="btnBalanceSheet_Click"
+                            HorizontalAlignment="Center"
+                            Content="كشف حساب"
+                            Style="{StaticResource StandardButtonSound}" />
+                </StackPanel>
+                
+
+            </Grid>
+        </materialDesign:Card>
+
+
+
+        <Popup PopupAnimation="Slide"
+               AllowsTransparency="True"
+               Placement="Bottom"
+               StaysOpen="False"
+               PlacementTarget="{Binding ElementName=txtClient}"
+               Name="popSelectClient">
+            <Border  Style="{StaticResource ShadowBorder}"
+                     CornerRadius="0"
+                     MaxHeight="250"
+                     Width="{Binding ElementName=txtClient,Path=ActualWidth}">
+
+                <ListBox PreviewMouseLeftButtonUp="ListClientMain_PreviewMouseLeftButtonUp"
+                         DisplayMemberPath="ClientName"
+                         SelectedValuePath="Id"
+                         Name="ListClientMain" />
+
+            </Border>
+        </Popup>
+
+    </Grid>
+
+</UserControl>

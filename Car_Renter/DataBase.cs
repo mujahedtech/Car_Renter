@@ -12,6 +12,8 @@ namespace Car_Renter
         public readonly SQLiteAsyncConnection _database;
 
 
+        public static string BackUp = "MujahedTech_Bakup.db3";
+
         public static string Path = "MujahedTech.db3";
         public DataBase(string dbpath = "")
         {
@@ -22,7 +24,15 @@ namespace Car_Renter
             _database.CreateTableAsync<Tables.Clients>();
             _database.CreateTableAsync<Tables.Cars>();
             _database.CreateTableAsync<Tables.RentContracts>();
+            _database.CreateTableAsync<Tables.Payments>();
 
+
+        }
+
+        public Task BackUpDb()
+        {
+          
+            return _database.BackupAsync(BackUp);
 
         }
 
@@ -75,6 +85,9 @@ namespace Car_Renter
 
             return _database.Table<Tables.Cars>().OrderByDescending(i => i.Id).ToListAsync();
         }
+
+
+
 
 
         public Task<List<Tables.Cars>> SearchCars(string sValue)
@@ -145,6 +158,46 @@ namespace Car_Renter
         public Task<int> UpdateContract(Tables.RentContracts RentContracts)
         {
             return _database.UpdateAsync(RentContracts);
+
+        }
+        #endregion
+
+
+        //Here is For DB Payments
+        #region Rent Contract
+        public Task<List<Tables.Payments>> GetPayments()
+        {
+
+            return _database.Table<Tables.Payments>().ToListAsync();
+        }
+
+
+        public Task<List<Tables.Payments>> SearchPayments(string sValue)
+        {
+
+            //return _database.Table<Tables.Clients>().Where(p => p.Id.ToString().Contains(sValue)
+            //                          || (p.Id.ToString().Trim().ToLower().Contains(sValue.Trim().ToLower()))
+            //                          || (p.ClientName.ToString().Trim().ToLower().Contains(sValue.Trim().ToLower()))
+            //                          || (p.LicenseNumber.ToString().Trim().ToLower().Contains(sValue.Trim().ToLower()))
+            //                          || (p.NationalID.ToString().Trim().ToLower().Contains(sValue.Trim().ToLower()))
+            //                          || (p.MobileNumber.ToString().Trim().ToLower().Contains(sValue.Trim().ToLower()))
+            //                             ).OrderByDescending(i => i.Id).ToListAsync();
+
+            sValue = sValue.Trim().ToLower();
+
+            return _database.Table<Tables.Payments>().Where(p => p.ClientId.ToString().ToLower().Contains(sValue) ) .OrderByDescending(i => i.Id).ToListAsync();
+        }
+
+
+        public Task<int> SavePayment(Tables.Payments Payment)
+        {
+            return _database.InsertAsync(Payment);
+
+        }
+
+        public Task<int> UpdatePayment(Tables.Payments Payment)
+        {
+            return _database.UpdateAsync(Payment);
 
         }
         #endregion

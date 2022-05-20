@@ -49,18 +49,16 @@ namespace Car_Renter.Pages
                               ClientID = Contracts.ClientID,
                               SecoundClientID = Contracts.SecoundClientID,
                               CarID = Contracts.CarID,
-                              DateOut = Contracts.DateOut,
-                              DateIn = Contracts.DateIn,
-                              DayNumber = Contracts.DayNumber,
-                              DailyCost = Contracts.DailyCost,
-                              TotalCash = Contracts.TotalCash,
+                              DateOut = Contracts.DateOut.Value,
+                             
+                              DayNumber = Contracts.DayNumber.Value,
+                              DailyCost = Contracts.DailyCost.Value,
+                              TotalCash = Contracts.TotalCash.Value,
                               ClientName = Clients.ClientName,
                               SecoundClientName = ClientsSecound.ClientName,
                               CarName = Cars.CarName,
                               CarModel = Cars.CarModel,
                               CarReturn = Contracts.CarReturn
-
-
                           };
 
             vMContracts = new ObservableCollection<VMContracts>(results.Where(i => i.CarReturn == false).ToList());

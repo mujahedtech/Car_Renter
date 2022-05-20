@@ -7,102 +7,6 @@
         <ReportItems>
           <Rectangle Name="Rectangle1">
             <ReportItems>
-              <Textbox Name="Textbox4">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>شركة التلال</Value>
-                        <Style>
-                          <FontSize>15pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value />
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>لتاجير السيارات</Value>
-                        <Style>
-                          <FontSize>14pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value />
-                        <Style>
-                          <FontSize>14pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>قلقيلية - الشارع الغربي</Value>
-                        <Style>
-                          <FontSize>14pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                      <TextRun>
-                        <Value xml:space="preserve">
-</Value>
-                        <Style>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox4</rd:DefaultName>
-                <Top>0cm</Top>
-                <Left>11.98563cm</Left>
-                <Height>3.26646cm</Height>
-                <Width>7.18312cm</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Textbox Name="Textbox5">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -189,7 +93,6 @@
                 <Left>0cm</Left>
                 <Height>3.26646cm</Height>
                 <Width>8.00334cm</Width>
-                <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -202,102 +105,26 @@
               </Textbox>
               <Rectangle Name="Rectangle2">
                 <ReportItems>
-                  <Textbox Name="Textbox6">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>التلال</Value>
-                            <Style>
-                              <FontSize>15pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontSize>15pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>Altelal </Value>
-                            <Style>
-                              <FontSize>13pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value />
-                            <Style>
-                              <FontSize>15pt</FontSize>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>For Rent Cars</Value>
-                            <Style>
-                              <FontWeight>Bold</FontWeight>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style>
-                          <TextAlign>Center</TextAlign>
-                        </Style>
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>Textbox6</rd:DefaultName>
-                    <Top>0cm</Top>
-                    <Left>0cm</Left>
-                    <Height>3.10271cm</Height>
-                    <Width>3.77062cm</Width>
+                  <Image Name="Image3">
+                    <Source>External</Source>
+                    <Value>=Parameters!ImageHeader.Value</Value>
+                    <Sizing>Fit</Sizing>
+                    <Left>0.04167in</Left>
+                    <Height>1.22154in</Height>
+                    <Width>1.48449in</Width>
                     <Style>
                       <Border>
                         <Style>None</Style>
                       </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
                     </Style>
-                  </Textbox>
+                  </Image>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
                 <Top>0.16375cm</Top>
                 <Left>8.07389cm</Left>
                 <Height>3.10271cm</Height>
                 <Width>3.87645cm</Width>
-                <ZIndex>2</ZIndex>
+                <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -316,12 +143,152 @@
                   </RightBorder>
                 </Style>
               </Rectangle>
+              <Textbox Name="Textbox110">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>شركة التلال</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox8</rd:DefaultName>
+                <Top>0.06447in</Top>
+                <Left>4.74652in</Left>
+                <Height>0.23958in</Height>
+                <Width>2.96901in</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox111">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>لتاجير السيارات</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox8</rd:DefaultName>
+                <Top>0.37349in</Top>
+                <Left>4.74652in</Left>
+                <Height>0.28125in</Height>
+                <Width>2.96901in</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox112">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>قلقيلية - الشارع الغربي</Value>
+                        <Style>
+                          <FontSize>14pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox8</rd:DefaultName>
+                <Top>0.64433in</Top>
+                <Left>4.74652in</Left>
+                <Height>0.28125in</Height>
+                <Width>2.96901in</Width>
+                <ZIndex>4</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox113">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>رقم مشتغل مرخص :562475897</Value>
+                        <Style>
+                          <FontSize>12pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox8</rd:DefaultName>
+                <Top>0.95334in</Top>
+                <Left>4.74652in</Left>
+                <Height>0.23958in</Height>
+                <Width>2.96901in</Width>
+                <ZIndex>5</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.28787cm</Top>
             <Left>0.68474cm</Left>
             <Height>3.43104cm</Height>
-            <Width>19.16875cm</Width>
+            <Width>20.0507cm</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -478,7 +445,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>135</Value>
+                    <Value>=Parameters!ContractNumber.Value</Value>
                     <Style>
                       <FontSize>13pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -962,8 +929,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
-                <Top>0in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>10</ZIndex>
@@ -998,7 +963,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
-                <Top>0in</Top>
                 <Left>2.70325in</Left>
                 <Height>0.2883in</Height>
                 <Width>1in</Width>
@@ -1034,7 +998,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>0.2883in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>12</ZIndex>
@@ -1105,7 +1068,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>0.57661in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>14</ZIndex>
@@ -1140,7 +1102,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>0.86491in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>15</ZIndex>
@@ -1175,7 +1136,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>1.15321in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>16</ZIndex>
@@ -1210,7 +1170,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>1.44152in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>17</ZIndex>
@@ -1245,7 +1204,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>1.72982in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>18</ZIndex>
@@ -1280,7 +1238,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>2.01812in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>19</ZIndex>
@@ -1315,7 +1272,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>2.30643in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>20</ZIndex>
@@ -1350,7 +1306,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>2.59473in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>21</ZIndex>
@@ -2976,7 +2931,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
-                <Top>0in</Top>
                 <Left>0.00002in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
@@ -3012,7 +2966,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
-                <Top>0in</Top>
                 <Left>2.70327in</Left>
                 <Height>0.2883in</Height>
                 <Width>1in</Width>
@@ -3083,7 +3036,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>0.57661in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>8</ZIndex>
@@ -3118,7 +3070,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>0.86492in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>9</ZIndex>
@@ -3153,7 +3104,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox32</rd:DefaultName>
                 <Top>1.15322in</Top>
-                <Left>0in</Left>
                 <Height>0.2883in</Height>
                 <Width>1.125in</Width>
                 <ZIndex>10</ZIndex>
@@ -3899,7 +3849,7 @@
             <Top>5.68529in</Top>
             <Left>1.84777in</Left>
             <Height>1.44152in</Height>
-            <Width>2.12505in</Width>
+            <Width>2.12506in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -4288,11 +4238,19 @@
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="ImageHeader">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ContractNumber">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>7</NumberOfRows>
+      <NumberOfRows>8</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -4428,6 +4386,16 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>6</RowIndex>
           <ParameterName>SubTotal</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>ImageHeader</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>ContractNumber</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

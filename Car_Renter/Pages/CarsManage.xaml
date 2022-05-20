@@ -10,9 +10,7 @@
              FlowDirection="RightToLeft"
              xmlns:table="clr-namespace:Car_Renter.Tables"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <UserControl.DataContext>
-        <table:Cars />
-    </UserControl.DataContext>
+  
     <Grid>
         <Grid Background="White">
             <Grid  Margin="20">
@@ -91,6 +89,9 @@
 
                             <DataGrid.Columns>
 
+                                <DataGridTextColumn Binding="{Binding Id}"
+                                                    Header="ID" />
+
                                 <DataGridTemplateColumn Header="اسم السيارة">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -104,7 +105,21 @@
                                 </DataGridTemplateColumn>
 
                                 <DataGridTextColumn Binding="{Binding CarYear}"
-                                                    Header="سنة الصنع" />
+                                                    Header="سنة&#x0a;الصنع" 
+                                                    
+                                                    />
+
+                                <DataGridTemplateColumn Header="اسم السيارة">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock>
+                                                <Run Text="{Binding CarName}" />
+                                                <Run Text="|" />
+                                                <Run Text="{Binding CarModel}" />
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
 
                                 <DataGridTextColumn Binding="{Binding CarNumber}"
                                                     Header="رقم السيارة" />
@@ -113,12 +128,13 @@
                                                     Header="اللون" />
 
                                 <DataGridTextColumn Binding="{Binding EndLicenseDate,StringFormat=yyyy/MM/dd}"
-                                                    Header="تاريخ انتهاء الترخيص" />
+                                                    Header="تاريخ انتهاء&#x0a; الترخيص" />
 
                                 <DataGridTextColumn Binding="{Binding EndInsuranceDate,StringFormat=yyyy/MM/dd}"
-                                                    Header="تاريخ انتهاء التامين" />
+                                                    Header="تاريخ انتهاء&#x0a; التامين" />
 
-
+                                <DataGridTextColumn Binding="{Binding CarReturn}"
+                                                    Header="حالة السيارة" />
 
 
                                 <!--<DataGridTextColumn Header="{Binding Usernamelbl,Source={StaticResource MVVM}}"      />-->

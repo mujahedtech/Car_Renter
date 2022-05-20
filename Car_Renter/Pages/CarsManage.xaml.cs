@@ -15,13 +15,46 @@ using System.Windows.Shapes;
 
 namespace Car_Renter.Pages
 {
+    public class VMCars:ViewModel.BaseNotifyViewModel
+    {
+
+      
+        public int Id { get; set; }
+        public Guid IDGuid { get; set; } 
+        public string CarName { get; set; }
+        public string CarModel { get; set; }
+        public string CarYear { get; set; }
+        public string CarNumber { get; set; }
+        public string CarColor { get; set; }
+
+        public DateTime StartLicenseDate { get; set; } = DateTime.Now;
+
+       
+        public DateTime EndLicenseDate { get; set; } = DateTime.Now;
+
+
+
+        public DateTime StartInsuranceDate { get; set; } = DateTime.Now;
+
+        //تاريخ انتهاء التامين
+        public DateTime EndInsuranceDate { get; set; } = DateTime.Now;
+
+        public bool CarReturn { get; set; } = true;
+
+        public string CarFullName { get; set; }
+
+
+    }
+
+
+
     /// <summary>
     /// Interaction logic for CarsManage.xaml
     /// </summary>
     public partial class CarsManage : UserControl
     {
 
-        Tables.Cars Cars = new Tables.Cars();
+        VMCars Cars = new VMCars();
         public CarsManage()
         {
             InitializeComponent();
@@ -35,7 +68,34 @@ namespace Car_Renter.Pages
         {
             AddNewPop.IsOpen = false;
 
-            DataGridList.ItemsSource = await new DataBase().GetCars();
+
+            var DbContract = await new DataBase().GetRentContract();
+          
+            var DbCar = await new DataBase().GetCars();
+
+
+           
+
+            var results = from Cars in DbCar select new VMCars
+                          {
+                             Id=Cars.Id,
+                              CarColor= Cars.CarColor,
+                              CarModel= Cars.CarModel,
+                              CarName= Cars.CarName,
+                              CarNumber= Cars.CarNumber,
+                              CarYear= Cars.CarYear,
+                              EndInsuranceDate= Cars.EndInsuranceDate,
+                              EndLicenseDate= Cars.EndLicenseDate,
+                              IDGuid= Cars.IDGuid,
+                              StartInsuranceDate= Cars.StartInsuranceDate,
+                              StartLicenseDate= Cars.StartLicenseDate,
+                              CarReturn= DbContract.Where(i => i.CarID == Cars.Id).LastOrDefault() == null ? true : DbContract.Where(i => i.CarID == Cars.Id).LastOrDefault().CarReturn
+
+
+
+        };
+
+            DataGridList.ItemsSource = results.ToList();
 
             return;
 
@@ -221,7 +281,7 @@ namespace Car_Renter.Pages
         {
             AddNewPop.IsOpen = true;
 
-            Cars = new Tables.Cars();
+            Cars = new VMCars();
 
             DataContext = Cars;
         }
@@ -235,12 +295,20 @@ namespace Car_Renter.Pages
         {
             AddNewPop.StaysOpen = true;
 
-            Cars = (Tables.Cars)DataGridList.SelectedItem;
+            Cars = (VMCars)DataGridList.SelectedItem;
 
             DataContext = Cars;
 
+
+            Car.Id = Cars.Id;
+            Car.IDGuid = Cars.IDGuid;
+
             AddNewPop.IsOpen = true;
         }
+
+
+
+        Tables.Cars Car = new Tables.Cars();
 
         private async void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -322,20 +390,33 @@ namespace Car_Renter.Pages
 
                 Counter += 1;
 
-
             }
+
+
+
+            Car = new Tables.Cars();
+
+            Car.CarName = Cars.CarName;
+            Car.CarModel = Cars.CarModel;
+            Car.CarColor = Cars.CarColor;
+            Car.CarYear = Cars.CarYear;
+            Car.CarNumber = Cars.CarNumber;
+            Car.StartLicenseDate = Cars.StartLicenseDate;
+            Car.EndLicenseDate = Cars.EndLicenseDate;
+            Car.StartInsuranceDate = Cars.StartInsuranceDate;
+            Car.EndInsuranceDate = Cars.EndInsuranceDate;
 
             txtMessage.Text = MessageUser;
 
             if (Counter == 0)
             {
-                if (Cars.Id == 0)
+                if (Car.Id == 0)
                 {
-                    await new DataBase().SaveCar(Cars);
+                    await new DataBase().SaveCar(Car);
                 }
                 else
                 {
-                    await new DataBase().UpdateCar(Cars);
+                    await new DataBase().UpdateCar(Car);
                 }
 
                 Farms_LoadedAsync();

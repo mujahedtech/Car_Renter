@@ -21,14 +21,19 @@ namespace Car_Renter.Tables
 
         public int CarID { get; set; }
 
-        public DateTime DateOut { get; set; } = DateTime.Now;
-        public DateTime DateIn { get; set; } = DateTime.Now;
+        public DateTime? DateOut { get; set; } = null;
 
-        public int DayNumber { get; set; } = 0;
-        public double DailyCost { get; set; } = 0;
-        public double TotalAmount { get { return DayNumber * DailyCost; } }
-        public double TotalCash { get; set; }
-        public double NetAmount { get { return TotalAmount - TotalCash; } }
+        public DateTime? DateIn { get { return DateOut.HasValue? DateOut.Value.AddDays(DayNumber.Value):DateTime.Now; } }
+
+
+        public DateTime TimeIn { get; set; } = DateTime.Now;
+
+
+        public int? DayNumber { get; set; } = null;
+        public double? DailyCost { get; set; } = null;
+        public double TotalAmount { get { return DayNumber.HasValue&& DayNumber.HasValue? DayNumber.Value * DailyCost.Value:0; } }
+        public double? TotalCash { get; set; }
+        public double NetAmount { get { return TotalAmount - (TotalCash.HasValue? TotalCash.Value:0); } }
 
 
         //يتم حفظ هنا هل تم ارجاع المركبة او لا

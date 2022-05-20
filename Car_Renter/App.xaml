@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Car_Renter"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             xmlns:Con="clr-namespace:Car_Renter.Convertors"
+             >
     <Application.Resources>
 
         <ResourceDictionary>
@@ -15,6 +17,8 @@
             </ResourceDictionary.MergedDictionaries>-->
 
 
+
+            <Con:ReverseBool x:Key="ReverseBool"/>
 
             <BooleanToVisibilityConverter x:Key="BoolToVis"/>
 
@@ -101,6 +105,37 @@
                         Value="Wrap" />
             </Style>
 
+
+            <Style x:Key="textblockEditHyber"
+                   TargetType="{x:Type TextBlock}">
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="Foreground"
+                        Value="#43425D" />
+                <Setter Property="FontSize"
+                        Value="13" />
+                <Setter Property="FontFamily"
+                        Value="Nunito Sans" />
+                <Setter Property="FontWeight"
+                        Value="SemiBold" />
+                <Setter Property="TextWrapping"
+                        Value="Wrap" />
+
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+                        <Setter Property="Foreground"
+                                Value="DodgerBlue" />
+
+                        <Setter Property="TextDecorations"
+                                Value="Underline" />
+
+
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
             <Style x:Key="EntryNewWithHint"
                    TargetType="{x:Type TextBox}">
                 <Setter Property="Template">
@@ -137,7 +172,7 @@
                                         </TextBlock.Style>
                                     </TextBlock>
 
-                                    <TextBox x:Name="txtShow"
+                                    <TextBox  x:Name="txtShow"
                                              Background="Transparent"
                                              Focusable="True"
                                              Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}"
@@ -423,6 +458,7 @@
                                     Background="#ECF2FF">
                                 <TextBlock Margin="5,0"
                                            Text="{Binding }"
+                                         
                                            FontSize="14"
                                            FontFamily="Nunito Sans"
                                            FontWeight="SemiBold"
@@ -436,10 +472,9 @@
                 </Setter>
 
 
-
-
             </Style>
 
+    
             <Style x:Key="DatagridRowHeader"
                    BasedOn="{StaticResource {x:Type DataGridRowHeader}}"
                    TargetType="{x:Type DataGridRowHeader}">
@@ -492,7 +527,7 @@
                 <Setter Property="AutoGenerateColumns"
                         Value="False" />
                 <Setter Property="HeadersVisibility"
-                        Value="All" />
+                        Value="Column" />
                 <Setter Property="CellStyle"
                         Value="{StaticResource CellStyle}" />
                 <Setter Property="SelectionMode"

@@ -133,29 +133,9 @@
                             </Button>
 
 
-                            <materialDesign:Card  FlowDirection="RightToLeft"
-                                                  Margin="10,3"
-                                                  BorderThickness="1"
-                                                  BorderBrush="White"
-                                                  Padding="10,0">
-                                <ComboBox  Background="White"
-                                           MinWidth="100"
-                                           VerticalContentAlignment="Center"
-                                           Foreground="Black"
-                                           FontSize="15"
-                                           Name="txtPrinter" />
-                            </materialDesign:Card>
+                          
 
-                            <Button Click="btnTopButtons"
-                                    Uid="6"
-                                    Background="{x:Null}"
-                                    BorderBrush="{x:Null}"
-                                    VerticalAlignment="Center">
-                                <materialDesign:PackIcon  Kind="PrinterCheck"
-                                                          Foreground="White"
-                                                          Width="25"
-                                                          Height="25" />
-                            </Button>
+                           
 
                             <Button Margin="20,0"
                                     Click="btnTopButtons"
@@ -218,12 +198,22 @@
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
                                 Foreground="{StaticResource MainTextColor}"
-                                Click="btnMainButtons" />
+                                Click="btnMainButtons" 
+                                Name="btnReports" />
                         <materialDesign:PopupBox Name="SecondaryMenu"
                                                  IsEnabled="True"
                                                  Foreground="Black"
                                                  Visibility="Visible"
-                                                 Grid.Column="4"  />
+                                                 Grid.Column="4">
+
+                            <StackPanel>
+                                <Button Content="1" />
+                                <Button Content="2" />
+                                <Button Content="3" />
+                                <Button Content="4" />
+                            </StackPanel>
+                            
+                        </materialDesign:PopupBox>
                         <Button Visibility="Collapsed"
                                 Grid.Column="5"
                                 Uid="5"
@@ -263,11 +253,14 @@
                            Height="5"
                            Background="#FF2196F3"
                            HorizontalAlignment="Left"
-                           Margin="0 0 0 0" />
+                           Margin="0 0 0 0" Visibility="Collapsed" />
 
                     <Grid x:Name="GridMain"
                           Grid.Row="3"
                           Background="{StaticResource MainColor}">
+                        
+                        
+                        
 
                     </Grid>
                 </Grid>
@@ -322,6 +315,57 @@
                 </Grid>
                 
             </Popup>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Popup Name="PopReports"
+                   StaysOpen="False"
+                   PlacementTarget="{Binding ElementName=btnReports}"
+                   Placement="Bottom"
+                   IsOpen="False"
+                   AllowsTransparency="True">
+
+                <Grid>
+                    <materialDesign:Card Width="{Binding ElementName=btnReports,Path=ActualWidth}">
+
+                        <StackPanel>
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="تقرير كلي"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}"
+                                   Click="ReportsClick"
+                                    Uid="0" />
+                            <Button Margin="0,5"
+                                    Height="40"
+                                    Content="تقرير زبون"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    Foreground="{StaticResource MainTextColor}"
+                                    Click="ReportsClick"
+                                    Uid="1" />
+                           
+                        </StackPanel>
+
+                    </materialDesign:Card>
+                </Grid>
+
+            </Popup>
+
+
+
+
 
 
         </Grid>

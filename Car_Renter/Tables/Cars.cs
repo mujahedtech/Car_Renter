@@ -29,5 +29,9 @@ namespace Car_Renter.Tables
 
         //تاريخ انتهاء التامين
         public DateTime EndInsuranceDate { get; set; } = DateTime.Now;
+
+
+       
+
     }
 }
