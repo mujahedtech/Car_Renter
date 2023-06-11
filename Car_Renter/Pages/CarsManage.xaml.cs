@@ -396,6 +396,7 @@ namespace Car_Renter.Pages
 
             Car = new Tables.Cars();
 
+            Car.Id = Cars.Id;
             Car.CarName = Cars.CarName;
             Car.CarModel = Cars.CarModel;
             Car.CarColor = Cars.CarColor;

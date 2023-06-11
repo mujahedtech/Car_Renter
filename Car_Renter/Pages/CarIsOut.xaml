@@ -124,11 +124,38 @@
 
 
 
-                            <DataGridTextColumn Binding="{Binding CarReturn}"
-                                                Header="حالة السيارة" />
+                            <DataGridTemplateColumn Width="auto"
+                                                    Header="حالة المركبة">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+
+                                        <TextBlock x:Name="txt1"
+                                                   Uid="{Binding CarReturn}">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Text"
+                                                            Value="مؤجرة" />
+                                                    <Setter Property="Foreground"
+                                                            Value="Red" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource self},Path=Uid}"
+                                                                     Value="True">
+                                                            <Setter Property="Text"
+                                                                    Value="تم الارجاع" />
+                                                            <Setter Property="Foreground"
+                                                                    Value="Green" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
 
-                          
+
 
 
                             <!--<DataGridTextColumn Header="{Binding Usernamelbl,Source={StaticResource MVVM}}"      />-->

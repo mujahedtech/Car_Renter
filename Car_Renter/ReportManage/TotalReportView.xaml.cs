@@ -62,7 +62,7 @@ namespace Car_Renter.ReportManage
 
             var results = from Contracts in DbContract
                           join Clients in DbClient on Contracts.ClientID equals Clients.Id
-                          join ClientsSecound in DbClient on Contracts.SecoundClientID equals ClientsSecound.Id
+                          //join ClientsSecound in DbClient on Contracts.SecoundClientID equals ClientsSecound.Id
                           join Cars in DbCar on Contracts.CarID equals Cars.Id
 
                           select new VMContracts
@@ -78,7 +78,7 @@ namespace Car_Renter.ReportManage
                               DailyCost = Contracts.DailyCost.Value,
                               TotalCash = DbPayment.Where(i => i.ContractGuid == Contracts.IDGuid).FirstOrDefault() == null ? 0 : DbPayment.Where(i => i.ContractGuid == Contracts.IDGuid).Sum(i => i.Amount.Value),
                               ClientName = Clients.ClientName,
-                              SecoundClientName = ClientsSecound.ClientName,
+                              //SecoundClientName = ClientsSecound.ClientName,
                               CarName = Cars.CarName,
                               CarModel = Cars.CarModel,
                               CarReturn = Contracts.CarReturn,
@@ -95,7 +95,8 @@ namespace Car_Renter.ReportManage
                 results = results.Where(i => i.DateOut >= vMTotalReport.DateFrom && i.DateOut <= vMTotalReport.DateTo).ToList();
             }
 
-            var dataTable = LinqHelper.ToDataTable<Pages.VMContracts>(results.ToList());
+            var dataTable = LinqHelper.ToDataTable<Pages.VMContracts>(results.Where(i=>i.NetAmount>0).ToList());
+
 
 
             Report.ReportViewr1.LocalReport.ReportEmbeddedResource = "Car_Renter.ReportManage.TotalBalanceReport.rdlc";

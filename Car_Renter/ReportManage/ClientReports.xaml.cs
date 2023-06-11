@@ -98,6 +98,8 @@ namespace Car_Renter.ReportManage
                               SecoundClientID = Contracts.SecoundClientID,
                               CarID = Contracts.CarID,
                               DateOut = Contracts.DateOut.Value,
+                              Phone =Clients.MobileNumber,
+                              NationalID=Clients.NationalID,
 
                               DayNumber = Contracts.DayNumber.Value,
                               DailyCost = Contracts.DailyCost.Value,

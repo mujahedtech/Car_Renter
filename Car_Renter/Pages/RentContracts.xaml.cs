@@ -67,6 +67,8 @@ namespace Car_Renter.Pages
         public string Date { get { return DateOut.ToShortDateString(); } }
 
 
+        //متغير من اجل عرض كم تبقى دفعه على الحساب
+        public double NetAmountUpdated { get; set; } 
 
 
     }
@@ -638,8 +640,7 @@ namespace Car_Renter.Pages
         {
 
 
-          txtMessage.Text= RentContractsTable.DateOut.ToString();
-            return;
+         
 
 
             ClearData();
@@ -949,6 +950,8 @@ namespace Car_Renter.Pages
 
             string LogoPath = "file:///" + AppDomain.CurrentDomain.BaseDirectory + @"Logo.jpg";
 
+          
+
             Microsoft.Reporting.WinForms.ReportParameter[] par = new ReportParameter[]
                            {
 
@@ -1096,6 +1099,7 @@ namespace Car_Renter.Pages
         {
             var btn = sender as System.Windows.Controls.Button;
             var VMContracts = btn.CommandParameter as VMContracts;
+
 
             if (MessageBox.Show("هل انت متاكد من ارجاع السيارة" + VMContracts.CarNumber + " | " + VMContracts.CarFullName,
 "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -1254,6 +1258,9 @@ namespace Car_Renter.Pages
             var btn = sender as System.Windows.Controls.Button;
             VMContracts = btn.CommandParameter as VMContracts;
 
+
+            VMContracts.NetAmountUpdated = VMContracts.TotalAmount - VMContracts.TotalCash;
+
             popCash.DataContext = VMContracts;
 
             paymentsClass.ClientId = VMContracts.ClientID;
@@ -1272,6 +1279,7 @@ namespace Car_Renter.Pages
 
         private async void AddAMount_Click(object sender, RoutedEventArgs e)
         {
+
             ClearData();
             string MessageUser = "";
 
@@ -1310,10 +1318,18 @@ namespace Car_Renter.Pages
 
                 PaymentList.ItemsSource = Data.Where(i => i.ContractGuid == VMContracts.IDGuid).ToList();
 
+               
+
+
+
                 paymentsClass = new Tables.Payments();
                 paymentsClass.ClientId = VMContracts.ClientID;
                 paymentsClass.ContractId = VMContracts.Id;
                 paymentsClass.ContractGuid = VMContracts.IDGuid;
+
+
+                VMContracts.TotalCash = Data.Where(i => i.ContractGuid == VMContracts.IDGuid).Sum(I=>I.Amount).Value;
+                VMContracts.NetAmountUpdated = VMContracts.TotalAmount - VMContracts.TotalCash;
 
 
                 GridAdd.DataContext = paymentsClass;

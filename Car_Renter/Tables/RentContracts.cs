@@ -23,7 +23,7 @@ namespace Car_Renter.Tables
 
         public DateTime? DateOut { get; set; } = null;
 
-        public DateTime? DateIn { get { return DateOut.HasValue? DateOut.Value.AddDays(DayNumber.Value):DateTime.Now; } }
+        public DateTime? DateIn { get { return DateOut.HasValue&& DayNumber.HasValue ? DateOut.Value.AddDays(DayNumber.Value):DateTime.Now; } }
 
 
         public DateTime TimeIn { get; set; } = DateTime.Now;
@@ -31,7 +31,7 @@ namespace Car_Renter.Tables
 
         public int? DayNumber { get; set; } = null;
         public double? DailyCost { get; set; } = null;
-        public double TotalAmount { get { return DayNumber.HasValue&& DayNumber.HasValue? DayNumber.Value * DailyCost.Value:0; } }
+        public double TotalAmount { get { return DayNumber.HasValue&& DailyCost.HasValue? DayNumber.Value * DailyCost.Value:0; } }
         public double? TotalCash { get; set; }
         public double NetAmount { get { return TotalAmount - (TotalCash.HasValue? TotalCash.Value:0); } }
 

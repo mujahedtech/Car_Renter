@@ -78,18 +78,21 @@
 
 
                         <DataGrid  MouseDoubleClick="DataGridList_MouseDoubleClick"
-                                  Name="DataGridList"
-                                  Style="{StaticResource DataGridStyle }"
-                                  Grid.Row="2">
+                                   Name="DataGridList"
+                                   Style="{StaticResource DataGridStyle }"
+                                   Grid.Row="2">
 
                             <DataGrid.Columns>
 
 
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding Id}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding Id}"
                                                     Header="الرقم" />
 
-                                <DataGridTemplateColumn MinWidth="150" Width="auto" Header="اسم&#x0a;السيارة">
+                                <DataGridTemplateColumn MinWidth="150"
+                                                        Width="auto"
+                                                        Header="اسم&#x0a;السيارة">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock>
@@ -104,32 +107,41 @@
                                 <DataGridTextColumn MinWidth="150"
                                                     Width="auto"
                                                     Binding="{Binding ClientName}"
-                                                    Header="المستاجر"  />
-                              
+                                                    Header="المستاجر" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding DateOut,StringFormat=yyyy/MM/dd}"
+
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding DateOut,StringFormat=yyyy/MM/dd}"
                                                     Header="من&#x0a;تاريخ" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding DateIn,StringFormat=yyyy/MM/dd}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding DateIn,StringFormat=yyyy/MM/dd}"
                                                     Header="الى&#x0a;تاريخ" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding DayNumber}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding DayNumber}"
                                                     Header="عدد&#x0a;الايام" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding DailyCost}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding DailyCost}"
                                                     Header="الاجرة&#x0a;اليومية" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding TotalAmount}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding TotalAmount}"
                                                     Header="المبلغ&#x0a;الاجمالي" />
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding TotalCash}"
+                                <DataGridTextColumn Width="auto"
+                                                    Binding="{Binding TotalCash}"
                                                     Header="المبلغ&#x0a;المدفوع" />
 
 
-                                <DataGridTemplateColumn Width="auto" Header="المبلغ&#x0a;المتبقي">
+                                <DataGridTemplateColumn Width="auto"
+                                                        Header="المبلغ&#x0a;المتبقي">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Foreground="Red" FontWeight="Bold" Text="{Binding NetAmount}"/>
+                                            <TextBlock Foreground="Red"
+                                                       FontWeight="Bold"
+                                                       Text="{Binding NetAmount}" />
 
 
                                         </DataTemplate>
@@ -138,42 +150,75 @@
 
 
 
-                                <DataGridTextColumn Width="auto" Binding="{Binding CarReturn}"
-                                                    Header="حالة&#x0a;السيارة" />
+
+
+                                <DataGridTemplateColumn Width="auto"
+                                                        Header="حالة المركبة">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+
+                                            <TextBlock x:Name="txt1"
+                                                       Uid="{Binding CarReturn}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text"
+                                                                Value="مؤجرة" />
+                                                        <Setter Property="Foreground"
+                                                                Value="Red" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource self},Path=Uid}"
+                                                                         Value="True">
+                                                                <Setter Property="Text"
+                                                                        Value="تم الارجاع" />
+                                                                <Setter Property="Foreground"
+                                                                        Value="Green" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
 
 
                                 <DataGridTemplateColumn Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
 
-                                            <materialDesign:PopupBox Padding="0"  Name="SecondaryMenu"
+                                            <materialDesign:PopupBox Padding="0"
+                                                                     Name="SecondaryMenu"
                                                                      IsEnabled="True"
                                                                      Foreground="Black"
                                                                      Visibility="Visible"
-                                                                     Grid.Column="4" Height="25">
+                                                                     Grid.Column="4"
+                                                                     Height="25">
 
                                                 <StackPanel Width="150">
                                                     <Button  Name="btnPrint"
                                                              CommandParameter="{Binding .}"
                                                              FontWeight="Bold"
                                                              Content="طباعة"
-                                                             HorizontalContentAlignment="Center" Click="btnPrint_Click" />
-
-
-                                                    <Button IsEnabled="{Binding CarReturn,Converter={StaticResource ReverseBool}}" Name="btnReturnCar"
-                                                             CommandParameter="{Binding .}"
-                                                             FontWeight="Bold"
-                                                             Content="ارجاع السيارة"
                                                              HorizontalContentAlignment="Center"
-                                                             Click="btnReturnCar_Click_1" />
+                                                             Click="btnPrint_Click" />
 
-                                                    <Button 
-                                                            Name="btnAddPayment"
+
+                                                    <Button IsEnabled="{Binding CarReturn,Converter={StaticResource ReverseBool}}"
+                                                            Name="btnReturnCar"
+                                                            CommandParameter="{Binding .}"
+                                                            FontWeight="Bold"
+                                                            Content="ارجاع السيارة"
+                                                            HorizontalContentAlignment="Center"
+                                                            Click="btnReturnCar_Click_1" />
+
+                                                    <Button Name="btnAddPayment"
                                                             CommandParameter="{Binding .}"
                                                             FontWeight="Bold"
                                                             Content="عرض الدفعات"
                                                             HorizontalContentAlignment="Center"
-                                                           Click="btnAddPayment_Click" />
+                                                            Click="btnAddPayment_Click" />
 
 
                                                 </StackPanel>
@@ -181,7 +226,7 @@
                                             </materialDesign:PopupBox>
 
 
-                                            
+
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -222,8 +267,9 @@
                MinWidth="800"
                Margin="20"
                StaysOpen="True">
-            <Border Name="BorderNewpop" Style="{StaticResource ShadowBorder}"
-                     CornerRadius="0">
+            <Border Name="BorderNewpop"
+                    Style="{StaticResource ShadowBorder}"
+                    CornerRadius="0">
 
 
                 <Grid>
@@ -296,7 +342,8 @@
 
                         <Button Click="btnSaveAndPrint_Click"
                                 Name="btnSaveAndPrint"
-                                Content="طباعة" Margin="10,0"
+                                Content="طباعة"
+                                Margin="10,0"
                                 Style="{StaticResource StandardButtonSound}" />
 
                     </StackPanel>
@@ -335,7 +382,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="10" />
-                            <ColumnDefinition MinWidth="200"/>
+                            <ColumnDefinition MinWidth="200" />
                             <ColumnDefinition Width="10" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="10" />
@@ -376,10 +423,12 @@
 
 
 
-                        <TextBlock  Grid.Column="2" Grid.RowSpan="2"
+                        <TextBlock  Grid.Column="2"
+                                    Grid.RowSpan="2"
                                     Grid.Row="1"
                                     Text="اضافة مستاجر"
-                                    Style="{StaticResource textblockEditHyber}" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" />
+                                    Style="{StaticResource textblockEditHyber}"
+                                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" />
 
 
 
@@ -454,7 +503,8 @@
                                        Content="البيانات المالية"
                                        FontSize="20"
                                        Width="150"
-                                       Name="btnCash" Visibility="Hidden"
+                                       Name="btnCash"
+                                       Visibility="Hidden"
                                        HorizontalAlignment="Center"
                                        Style="{StaticResource StandardButtonToggle}" />
 
@@ -473,7 +523,7 @@
 
 
 
-                      
+
 
                         <Grid Grid.Column="2"
                               Grid.Row="0">
@@ -491,7 +541,6 @@
 
                             <Button Uid="0"
                                     Click="btnSearchSecoundClient_Click"
-                                 
                                     Grid.Column="2"
                                     Background="{x:Null}"
                                     BorderBrush="{x:Null}"
@@ -519,16 +568,16 @@
                                      Uid="السائق البديل"
                                      Text="{Binding ClientName}"
                                      Name="txtSecoundClient"
-                                     TextChanged="txtSecoundClient_TextChanged"
-                                     />
+                                     TextChanged="txtSecoundClient_TextChanged" />
 
-                            <Button Uid="1" Click="btnSearchSecoundClient_Click"
-                                     x:Name="btnSearchSecoundClient"
-                                     Grid.Column="2"
-                                     Background="{x:Null}"
-                                     BorderBrush="{x:Null}"
-                                     VerticalAlignment="Top"
-                                     HorizontalAlignment="Right">
+                            <Button Uid="1"
+                                    Click="btnSearchSecoundClient_Click"
+                                    x:Name="btnSearchSecoundClient"
+                                    Grid.Column="2"
+                                    Background="{x:Null}"
+                                    BorderBrush="{x:Null}"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Right">
                                 <materialDesign:PackIcon FlowDirection="RightToLeft"
                                                          Kind="Search"
                                                          Foreground="DodgerBlue"
@@ -542,11 +591,10 @@
                               Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
-                                <ColumnDefinition Width="2"/>
-                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="2" />
+                                <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBox 
-                                     Style="{StaticResource EntryNewWithHint}"
+                            <TextBox Style="{StaticResource EntryNewWithHint}"
                                      Uid="السيارة"
                                      Text="{Binding CarFullName}"
                                      Name="txtCar"
@@ -558,9 +606,9 @@
                                      Background="{x:Null}"
                                      BorderBrush="{x:Null}"
                                      VerticalAlignment="Top"
-                                     HorizontalAlignment="Right"
-                                    >
-                                <materialDesign:PackIcon FlowDirection="RightToLeft" Kind="Search"
+                                     HorizontalAlignment="Right">
+                                <materialDesign:PackIcon FlowDirection="RightToLeft"
+                                                         Kind="Search"
                                                          Foreground="DodgerBlue"
                                                          Width="25"
                                                          Height="25" />
@@ -582,7 +630,6 @@
                                     Grid.Column="6"
                                     Grid.Row="4">
                             <materialDesign:TimePicker HorizontalAlignment="Left"
-                                                       
                                                        SelectedTime="{Binding DateOut,Mode=TwoWay}"
                                                        Name="txtTimeOut" />
 
@@ -607,21 +654,20 @@
                                  Name="txtDailyCost" />
 
 
-                        <DatePicker Visibility="Collapsed" Grid.Column="2"
+                        <DatePicker Visibility="Collapsed"
+                                    Grid.Column="2"
                                     Grid.Row="6"
-                                   
                                     Name="txtDateIn" />
 
-                        <TextBlock Grid.Column="2"  Style="{StaticResource textblockEdit}"
+                        <TextBlock Grid.Column="2"
+                                   Style="{StaticResource textblockEdit}"
                                    Grid.Row="6"
-                                   Text="{Binding DateIn,StringFormat=dd/MM/yyyy}"/>
+                                   Text="{Binding DateIn,StringFormat=dd/MM/yyyy}" />
 
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="6"
                                     Grid.Row="6">
-                            <materialDesign:TimePicker 
-                                                      
-                                                       SelectedTime="{Binding TimeIn,Mode=TwoWay}"
+                            <materialDesign:TimePicker SelectedTime="{Binding TimeIn,Mode=TwoWay}"
                                                        Name="txtTimeIn" />
 
                             <!--<TextBlock VerticalAlignment="Center" Style="{StaticResource textblockEdit}"
@@ -633,8 +679,7 @@
 
 
 
-                        <Grid 
-                              Grid.ColumnSpan="11"
+                        <Grid Grid.ColumnSpan="11"
                               Height="30"
                               Grid.Row="10">
                             <Grid>
@@ -660,7 +705,8 @@
                                             Style="{StaticResource textblockEdit}" />
 
 
-                                <TextBox Grid.Column="3" IsEnabled="False"
+                                <TextBox Grid.Column="3"
+                                         IsEnabled="False"
                                          Text="{Binding TotalAmount,Mode=OneWay}"
                                          Style="{StaticResource EntryNewWithHint}"
                                          Uid="المبلغ المطلوب" />
@@ -741,13 +787,12 @@
                 AllowsTransparency="True"
                 Placement="Center"
                 StaysOpen="False"
-                Name="popCash"
-                >
+                Name="popCash">
 
 
-            <Border Height="500" Width="800"
-               
-                Style="{StaticResource ShadowBorder}"
+            <Border Height="500"
+                    Width="800"
+                    Style="{StaticResource ShadowBorder}"
                     CornerRadius="0">
 
 
@@ -769,9 +814,9 @@
                         <RowDefinition Height="10" />
                         <RowDefinition Height="30" />
                         <RowDefinition Height="10" />
-                        <RowDefinition  MinHeight="100"/>
+                        <RowDefinition  MinHeight="100" />
                         <RowDefinition Height="20" />
-                     
+
 
                     </Grid.RowDefinitions>
 
@@ -782,8 +827,7 @@
                             Grid.ColumnSpan="3"
                             Height="2" />
 
-                    <TextBlock 
-                               Grid.Row="1"
+                    <TextBlock Grid.Row="1"
                                Grid.Column="1"
                                Grid.ColumnSpan="3"
                                FontSize="20"
@@ -797,28 +841,40 @@
                                Grid.ColumnSpan="3"
                                FontSize="18"
                                FontWeight="SemiBold"
-                               Text="{Binding Details}" VerticalAlignment="Center"
-                               Style="{StaticResource TitleHomePage }" Name="lblContractHeader" />
+                               Text="{Binding Details}"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource TitleHomePage }"
+                               Name="lblContractHeader" />
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="1"
                                Grid.ColumnSpan="3"
                                FontSize="18"
                                FontWeight="SemiBold"
-                               
                                VerticalAlignment="Center"
                                Style="{StaticResource TitleHomePage }"
                                Name="lblPaymentID">
+                        
                         <Run Text="امر الدفع" />
                         <Run Text=":" />
-                        <Run  Text="{Binding IDGuid}"   />
+                        <Run  Text="{Binding IDGuid}" />
+                         <Run Text="|"/>
+                         <Run Text="المبلغ المطلوب للدفع" />
                         
+                         <Run Text=":- "/>
+                       
+                         <Run FontSize="18"
+                              FontWeight="Bold"
+                              Text="{Binding NetAmountUpdated,StringFormat='{}{0 :c}'}"
+                              Foreground="Red" />
+
                     </TextBlock>
 
 
 
-                    <ToggleButton
-                                  Click="CloseAdd_Click"
+
+
+                    <ToggleButton Click="CloseAdd_Click"
                                   VerticalAlignment="Center"
                                   Grid.Column="3"
                                   Grid.Row="1"
@@ -841,9 +897,10 @@
 
 
 
-                    <Grid Name="GridAdd" Grid.Column="1" Grid.ColumnSpan="3"
-                          Grid.Row="7"
-                          >
+                    <Grid Name="GridAdd"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="3"
+                          Grid.Row="7">
                         <Grid PreviewKeyDown="GridForm_PreviewKeyDown">
 
 
@@ -854,7 +911,7 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="{StaticResource SpaceShapeRow}" />
                                 <RowDefinition />
-                             
+
                                 <RowDefinition Height="{StaticResource RowFirstHeight}" />
                             </Grid.RowDefinitions>
 
@@ -931,7 +988,8 @@
 
 
 
-                            <DataGrid MouseDoubleClick="PaymentList_MouseDoubleClick"  Name="PaymentList"
+                            <DataGrid MouseDoubleClick="PaymentList_MouseDoubleClick"
+                                      Name="PaymentList"
                                       Style="{StaticResource DataGridStyle}"
                                       Grid.Row="5"
                                       Grid.ColumnSpan="8">
@@ -953,7 +1011,7 @@
 
 
 
-                                   
+
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -979,7 +1037,7 @@
             </Border>
 
 
-          
+
 
         </Popup>
 
@@ -1040,15 +1098,17 @@
                          Name="ListCar">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            
+
                             <TextBlock>
                              
-                                <Run FontWeight="Bold" Foreground="Green" Text="{Binding CarNumber}" />
+                                <Run FontWeight="Bold"
+                                     Foreground="Green"
+                                     Text="{Binding CarNumber}" />
                                      <Run Text="|" />
                                 <Run Text="{Binding CarName}" />
                                 <Run Text="|" />
                                 <Run Text="{Binding CarModel}" />
-                                
+
                             </TextBlock>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -1065,13 +1125,12 @@
                MinWidth="350"
                Margin="20"
                StaysOpen="True"
-               IsOpen="False"
-               >
+               IsOpen="False">
             <Border  Style="{StaticResource ShadowBorder}"
                      CornerRadius="0">
 
 
-                <Grid >
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource ColumnsFirstWidth}" />
                         <ColumnDefinition />
@@ -1101,8 +1160,7 @@
                             Grid.ColumnSpan="3"
                             Height="2" />
 
-                    <TextBlock 
-                               Grid.Row="1"
+                    <TextBlock Grid.Row="1"
                                Grid.Column="1"
                                Grid.ColumnSpan="3"
                                FontSize="20"
@@ -1113,7 +1171,7 @@
 
 
                     <ToggleButton Name="CloseMiniClientAdd"
-                                 Click="CloseMiniClientAdd_Click"
+                                  Click="CloseMiniClientAdd_Click"
                                   VerticalAlignment="Center"
                                   Grid.Column="3"
                                   Grid.Row="1"
@@ -1142,7 +1200,6 @@
 
 
                     <Grid PreviewKeyDown="GridForm_PreviewKeyDown"
-                         
                           Grid.Row="5"
                           Grid.Column="1"
                           Grid.ColumnSpan="3">

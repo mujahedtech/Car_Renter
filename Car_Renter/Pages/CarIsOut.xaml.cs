@@ -40,7 +40,7 @@ namespace Car_Renter.Pages
 
             var results = from Contracts in DbContract
                           join Clients in DbClient on Contracts.ClientID equals Clients.Id
-                          join ClientsSecound in DbClient on Contracts.SecoundClientID equals ClientsSecound.Id
+                          //join ClientsSecound in DbClient on Contracts.SecoundClientID equals ClientsSecound.Id
                           join Cars in DbCar on Contracts.CarID equals Cars.Id
                           select new VMContracts
                           {
@@ -55,7 +55,7 @@ namespace Car_Renter.Pages
                               DailyCost = Contracts.DailyCost.Value,
                               TotalCash = Contracts.TotalCash.Value,
                               ClientName = Clients.ClientName,
-                              SecoundClientName = ClientsSecound.ClientName,
+                              //SecoundClientName = ClientsSecound.ClientName,
                               CarName = Cars.CarName,
                               CarModel = Cars.CarModel,
                               CarReturn = Contracts.CarReturn

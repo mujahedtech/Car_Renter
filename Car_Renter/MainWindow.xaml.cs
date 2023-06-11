@@ -53,6 +53,10 @@ namespace Car_Renter
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             CheckApp("Saleh_hardan", "Mujahed1200");
+
+             new DataBase();
+
+
         }
 
         private async void btnMainButtons(object sender, RoutedEventArgs e)

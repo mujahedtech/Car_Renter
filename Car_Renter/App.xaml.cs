@@ -15,7 +15,7 @@ namespace Car_Renter
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
+           
             base.OnStartup(e);
         }
     }
